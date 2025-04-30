@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img__logo {
+  width: 60%;
+  align-self: center;
+}
+
+.login__form {
+  width: 90%;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.7rem;
+}
+
+.submit__button {
+  margin-top: 2rem;
+}

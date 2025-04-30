@@ -1,0 +1,27 @@
+:host {
+  margin-top: auto;
+  padding: 5px 10px 30px 10px;
+  gap: 1rem;
+  background-color: #2a2a2a;
+  color: #b6ccd7;
+  border-top: 1px solid #3a3a3a;
+}
+
+.app__footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+    display: block;
+    text-align: center;
+
+    & .material-icons {
+      font-size: 1.7rem;
+      color: var(--color-text-primary);
+    }
+  }
+}
