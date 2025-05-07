@@ -1,16 +1,12 @@
 <section class="card card--training">
   <header class="card__header">
-    <h2 class="card__title">Entrenamiento de hoy</h2>
-    <h3 class="card__subtitle">Rutina entrenada: Pecho y Bíceps</h3>
+    <h2 class="card__title">Rutina de hoy</h2>
+    <span class="card__subtitle">Pecho - Bíceps</span>
   </header>
 
-  <ul class="card__list">
-    <li>Press banca: 3×12</li>
-    <li>Remo: 3×12</li>
-    <li>Press militar: 1×12</li>
-  </ul>
+  <app-workout-exercises />
 
-  <button class="card__button" aria-label="Iniciar entrenamiento">
-    A machacarlo
-  </button>
+  <a class="start-training" routerLink="/training" aria-label="Empezar entrenamiento">
+    Empezar entrenamiento
+  </a>
 </section>

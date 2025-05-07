@@ -1,0 +1,28 @@
+h2 {
+  color: var(--color-accent);
+}
+
+.training-exercises {
+  list-style: none;
+
+  .exercise-desc {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+  }
+
+  .exercises-inputs {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+button {
+  all: unset;
+
+  .material-icons {
+    font-size: 2rem;
+    color: var(--color-accent);
+  }
+}

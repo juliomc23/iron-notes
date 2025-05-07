@@ -1,2 +1,14 @@
-<h1>Funcionando</h1>
-<app-footer />
+<main class="main__workout">
+  <header class="workout-header">
+    <h1>Pecho - Tríceps</h1>
+    <a class="start-button" routerLink="/training"><span class="material-icons">
+        play_circle_filled
+      </span></a>
+  </header>
+  <div class="workout-container">
+    <section><app-workout-exercises /></section>
+    <section><app-today-exercises-result /></section>
+    <section><app-last-exercises-result /></section>
+  </div>
+</main>
+<app-footer></app-footer>

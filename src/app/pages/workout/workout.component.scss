@@ -1,5 +1,38 @@
-:host {
+.main__workout {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  padding: 0 1rem;
+
+  .workout-container {
+    padding-bottom: 5rem;
+  }
+
+  .workout-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-border);
+
+    .start-button {
+      all: unset;
+
+      .material-icons {
+        margin-top: 0.5rem;
+        font-size: 2rem;
+        color: var(--color-accent-strong);
+      }
+    }
+  }
+
+  section {
+    background-color: var(--color-background-secondary);
+    border: 1px solid var(--color-border);
+    padding: 0 1rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
 }

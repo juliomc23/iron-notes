@@ -1,0 +1,13 @@
+<div class="today-exercises-header">
+  <h2>Resultados de hoy</h2>
+  <button (click)=expand()>
+    <span class="material-icons">
+      expand_more
+    </span>
+  </button>
+</div>
+@if(expanded()){
+<ul class="exercises-list">
+  <app-result [results]=results />
+</ul>
+}

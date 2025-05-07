@@ -1,0 +1,29 @@
+<h2>Ejercicios</h2>
+<ul class="training-exercises">
+  @for(exercise of exercises(); track exercise.name){
+  <li>
+    <section class="exercise-desc">
+      <span>
+        {{exercise.name}} - {{exercise. series}} series x {{exercise.reps}} reps
+      </span>
+      <button [disabled]="wantToAddNewSerieToFill()" class="add-new-serie" (click)=addSerieToFill(exercise.name)>
+        <span class="material-icons">
+          add
+        </span>
+      </button>
+    </section>
+
+    @if(wantToAddNewSerieToFill() && exercise.name === exerciseToAddNewSerieToFill()){
+    <section class="exercises-inputs">
+      <input type="text" placeholder="Kg">
+      <input type="text" placeholder="Reps">
+      <input type="text" placeholder="RIR">
+      <button (click)=endSerieToFill()><span class="material-icons">
+          done
+        </span></button>
+    </section>
+    }
+  </li>
+  }
+</ul>
+<app-footer />

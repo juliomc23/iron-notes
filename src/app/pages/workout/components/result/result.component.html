@@ -1,0 +1,12 @@
+@for(result of results(); track result.name){
+<li>
+  <section>
+    <h3>{{result.name}}</h3>
+    <div class="exercise-info">
+      @for(result of results(); track result.name){
+      <span>{{result.weight}} KG · {{result.reps}} REPS · {{result.rir}} RIR</span>
+      }
+    </div>
+  </section>
+</li>
+}
