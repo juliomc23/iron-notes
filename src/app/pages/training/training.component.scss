@@ -1,28 +1,88 @@
 h2 {
+  margin-left: 1rem;
   color: var(--color-accent);
 }
 
 .training-exercises {
   list-style: none;
+  margin: 0;
+  padding: 0 1rem;
+}
 
-  .exercise-desc {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.exercise-item {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
 
-  }
+.exercise-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
-  .exercises-inputs {
-    display: flex;
-    gap: 1rem;
+.exercise-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.exercise-header p {
+  margin: 0;
+  color: var(--color-disabled);
+  font-size: 0.95rem;
+}
+
+.add-new-serie {
+  all: unset;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.save-serie {
+  all: unset;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.exercises-inputs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  fieldset {
+    width: 100%;
+    border: 1px solid var(--color-accent);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
   }
 }
 
-button {
-  all: unset;
+.exercises-inputs div {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
 
-  .material-icons {
-    font-size: 2rem;
-    color: var(--color-accent);
-  }
+.exercise-history {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.exercise-history li {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+
+.material-icons {
+  font-size: 2rem;
+  color: var(--color-accent);
 }

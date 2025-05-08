@@ -1,26 +1,47 @@
 <h2>Ejercicios</h2>
 <ul class="training-exercises">
-  @for(exercise of exercises(); track exercise.name){
-  <li>
-    <section class="exercise-desc">
-      <span>
-        {{exercise.name}} - {{exercise. series}} series x {{exercise.reps}} reps
-      </span>
-      <button [disabled]="wantToAddNewSerieToFill()" class="add-new-serie" (click)=addSerieToFill(exercise.name)>
-        <span class="material-icons">
-          add
-        </span>
-      </button>
-    </section>
+  @for(exercise of exercises(); track exercise.name) {
+  <li class="exercise-item">
+    <header class="exercise-header">
+      <h3>{{ exercise.name }}</h3>
+      <p>{{ exercise.series }} series x {{ exercise.reps }} reps</p>
 
-    @if(wantToAddNewSerieToFill() && exercise.name === exerciseToAddNewSerieToFill()){
-    <section class="exercises-inputs">
-      <input type="text" placeholder="Kg">
-      <input type="text" placeholder="Reps">
-      <input type="text" placeholder="RIR">
-      <button (click)=endSerieToFill()><span class="material-icons">
-          done
-        </span></button>
+      @if(isAddingSerieTo(exercise.name)) {
+      <button class="add-new-serie" (click)="endSerieToFill()" aria-label="Cancelar añadir serie">
+        <span class="material-icons">remove</span>
+      </button>
+      } @else if (!hasCompletedAllSeries(exercise.name)) {
+      <button class="add-new-serie" [disabled]="wantToAddNewSerieToFill()" (click)="addSerieToFill(exercise.name)"
+        aria-label="Añadir nueva serie">
+        <span class="material-icons">add</span>
+      </button>
+      }
+    </header>
+
+    @if(isAddingSerieTo(exercise.name)) {
+    <form [formGroup]="formGroup" (ngSubmit)="sendForm(exercise.name)" class="exercises-inputs">
+      <fieldset>
+        <legend>Añadir serie </legend>
+        <input formControlName="weight" type="number" aria-label="Peso en kilogramos" placeholder="KG" />
+        <input formControlName="reps" type="number" aria-label="Repeticiones" placeholder="REPS" />
+        <input formControlName="rir" type="number" aria-label="Repeticiones en reserva" placeholder="RIR" />
+        <button class="save-serie" type="submit" aria-label="Confirmar serie">
+          Guardar <span class="material-icons">done</span>
+        </button>
+      </fieldset>
+    </form>
+    }
+
+    @if(getSeriesFor(exercise.name).length > 0) {
+    <section>
+      <h4 id="series-{{ exercise.name }}">Series realizadas</h4>
+      <ul class="exercise-history">
+        @for(serie of getSeriesFor(exercise.name); track $index) {
+        <li>
+          {{ serie.weight }} kg x {{ serie.reps }} reps (RIR {{ serie.rir }})
+        </li>
+        }
+      </ul>
     </section>
     }
   </li>
