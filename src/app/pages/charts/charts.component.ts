@@ -1,5 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, computed, } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 @Component({
@@ -9,71 +8,112 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
   styleUrl: './charts.component.scss'
 })
 export class ChartsComponent {
-  basicData: any;
+  data: any;
+  options: any;
+  trainingDates: Date[] = [];
 
-  basicOptions: any;
-
-  platformId = inject(PLATFORM_ID);
-
-
-  ngOnInit() {
-    this.initChart();
+  constructor() {
+    this.generateTrainingDates();
   }
 
-  initChart() {
-    if (isPlatformBrowser(this.platformId)) {
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--p-text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
-      const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
+  ngOnInit() {
+    this.initializeChart();
+  }
 
-      this.basicData = {
-        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-        datasets: [
-          {
-            label: 'Sales',
-            data: [540, 325, 702, 620],
-            backgroundColor: [
-              'rgba(249, 115, 22, 0.2)',
-              'rgba(6, 182, 212, 0.2)',
-              'rgb(107, 114, 128, 0.2)',
-              'rgba(139, 92, 246, 0.2)',
-            ],
-            borderColor: ['rgb(249, 115, 22)', 'rgb(6, 182, 212)', 'rgb(107, 114, 128)', 'rgb(139, 92, 246)'],
-            borderWidth: 1,
-          },
-        ],
-      };
+  // Genera 13 fechas de entrenamiento (3 días por semana)
+  generateTrainingDates() {
+    const startDate = new Date(); // Fecha actual
+    let currentDate = new Date(startDate);
+    let trainingCount = 0;
 
-      this.basicOptions = {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: textColor,
-            },
-          },
+    // Retrocedemos en el tiempo para tener datos históricos
+    currentDate.setDate(currentDate.getDate() - 30); // Comenzamos 30 días atrás
+
+    while (trainingCount < 13) {
+      // Añadir fecha de entrenamiento (lunes, miércoles, viernes)
+      if ([1, 3, 5].includes(currentDate.getDay())) { // 1:lunes, 3:miércoles, 5:viernes
+        this.trainingDates.push(new Date(currentDate));
+        trainingCount++;
+      }
+      currentDate.setDate(currentDate.getDate() + 1); // Avanzar un día
+    }
+
+    // Ordenar fechas de más antigua a más reciente
+    this.trainingDates.sort((a, b) => a.getTime() - b.getTime());
+  }
+
+  initializeChart() {
+    // Formatear las fechas para mostrarlas mejor
+    const labels = this.trainingDates.map(date => this.formatDate(date));
+
+    // Datos de ejemplo (peso simulado)
+    const weights = this.trainingDates.map(date => this.calculateWeight(date));
+
+    this.data = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Progreso',
+          backgroundColor: '#42A5F5',
+          borderColor: '#1E88E5',
+          data: weights,
+          barPercentage: 0.8,
+          categoryPercentage: 0.9
+        }
+      ]
+    };
+
+    this.options = {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Peso (kg)'
+          }
         },
-        scales: {
-          x: {  // El eje X será ahora el eje vertical (en un gráfico de barras horizontal)
-            beginAtZero: true,
-            ticks: {
-              color: textColorSecondary,
-            },
-            grid: {
-              color: surfaceBorder,
-            },
-          },
-          y: {  // El eje Y será ahora el eje horizontal
-            ticks: {
-              color: textColorSecondary,
-            },
-            grid: {
-              color: surfaceBorder,
-            },
+        y: {
+          ticks: {
+            autoSkip: false // Para mostrar todas las fechas
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: (context: any) => {
+              return `Peso: ${context.raw} kg (${this.formatFullDate(this.trainingDates[context.dataIndex])})`;
+            }
           }
         }
       }
-    }
+    };
+  }
+
+  private formatDate(date: Date): string {
+    return date.toLocaleDateString('es-ES', {
+      day: 'numeric',
+      month: 'short'
+    });
+  }
+
+  private formatFullDate(date: Date): string {
+    return date.toLocaleDateString('es-ES', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short'
+    });
+  }
+
+  private calculateWeight(date: Date): number {
+    // Simulación: peso aumenta con cada entrenamiento
+    const daysFromStart = Math.floor((new Date().getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+    return 70 + (13 - daysFromStart / 2.5); // Peso base 70kg con progresión
   }
 }
