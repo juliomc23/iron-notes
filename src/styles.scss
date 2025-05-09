@@ -1,11 +1,14 @@
 :root {
-  /* 🎨 Colores base (modo oscuro) */
   --color-background-primary: #121212;
   --color-background-secondary: #1e1e1e;
-  --color-text-primary: #e0e0e0;
-  --color-text-secondary: #aaaaaa;
-  --color-accent: #b6ccd7;
-  --color-accent-strong: #5fa3bf;
+  --color-text-primary: #ffffff;
+  /* Blanco puro */
+  --color-text-secondary: #cccccc;
+  /* Blanco suavizado para contraste secundario */
+  --color-accent: #b3d9ff;
+  /* Azul bebé */
+  --color-accent-strong: #66b2ff;
+  /* Azul fuerte */
   --color-disabled: #545454;
   --color-border: #2c2c2c;
   --color-overlay: rgba(255, 255, 255, 0.05);

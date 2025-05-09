@@ -3,8 +3,10 @@
   @for(exercise of exercises(); track exercise.name) {
   <li class="exercise-item">
     <header class="exercise-header">
-      <h3>{{ exercise.name }}</h3>
-      <p>{{ exercise.series }} series x {{ exercise.reps }} reps</p>
+      <div>
+        <h3>{{ exercise.name }}</h3>
+        <p>{{ exercise.series }} series x {{ exercise.reps }} reps</p>
+      </div>
 
       @if(isAddingSerieTo(exercise.name)) {
       <button class="add-new-serie" (click)="endSerieToFill()" aria-label="Cancelar añadir serie">
