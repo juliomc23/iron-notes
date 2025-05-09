@@ -3,11 +3,10 @@ import { ResultComponent } from "../result/result.component";
 import { Exercise } from '../../models/exercise.interface';
 
 @Component({
-  selector: 'app-last-exercises-result',
-  standalone: true,
-  imports: [ResultComponent],
-  templateUrl: './last-exercises-result.component.html',
-  styleUrl: './last-exercises-result.component.scss'
+    selector: 'app-last-exercises-result',
+    imports: [ResultComponent],
+    templateUrl: './last-exercises-result.component.html',
+    styleUrl: './last-exercises-result.component.scss'
 })
 export class LastExercisesResultComponent {
   expanded: WritableSignal<boolean> = signal(false)

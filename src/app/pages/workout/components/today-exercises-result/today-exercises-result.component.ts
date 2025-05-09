@@ -3,11 +3,10 @@ import { ResultComponent } from '../result/result.component';
 import { Exercise } from '../../models/exercise.interface';
 
 @Component({
-  selector: 'app-today-exercises-result',
-  standalone: true,
-  imports: [ResultComponent],
-  templateUrl: './today-exercises-result.component.html',
-  styleUrl: './today-exercises-result.component.scss'
+    selector: 'app-today-exercises-result',
+    imports: [ResultComponent],
+    templateUrl: './today-exercises-result.component.html',
+    styleUrl: './today-exercises-result.component.scss'
 })
 export class TodayExercisesResultComponent {
   expanded: WritableSignal<boolean> = signal(false)

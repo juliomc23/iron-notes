@@ -6,11 +6,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 type DisplayedExercise = Omit<Exercise, 'weight' | 'rir'>;
 
 @Component({
-  selector: 'app-training',
-  standalone: true,
-  imports: [FooterComponent, ReactiveFormsModule],
-  templateUrl: './training.component.html',
-  styleUrl: './training.component.scss'
+    selector: 'app-training',
+    imports: [FooterComponent, ReactiveFormsModule],
+    templateUrl: './training.component.html',
+    styleUrl: './training.component.scss'
 })
 export class TrainingComponent {
   formGroup = new FormGroup({

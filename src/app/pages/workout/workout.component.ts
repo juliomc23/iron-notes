@@ -6,11 +6,10 @@ import { LastExercisesResultComponent } from "./components/last-exercises-result
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-workout',
-  standalone: true,
-  imports: [RouterLink, FooterComponent, WorkoutExercisesComponent, TodayExercisesResultComponent, LastExercisesResultComponent],
-  templateUrl: './workout.component.html',
-  styleUrl: './workout.component.scss'
+    selector: 'app-workout',
+    imports: [RouterLink, FooterComponent, WorkoutExercisesComponent, TodayExercisesResultComponent, LastExercisesResultComponent],
+    templateUrl: './workout.component.html',
+    styleUrl: './workout.component.scss'
 })
 export class WorkoutComponent {
 

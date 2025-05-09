@@ -4,11 +4,10 @@ import { TodayTrainComponent } from './components/today-train/today-train.compon
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [WelcomeCardComponent, TodayTrainComponent, FooterComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    imports: [WelcomeCardComponent, TodayTrainComponent, FooterComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
